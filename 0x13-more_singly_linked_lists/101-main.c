@@ -23,7 +23,7 @@ listint_t *_add_node(listint_t **head, int n)
 	tmp->n = n;
 	tmp->next = *head;
 	*head = tmp;
-	return (tmp);
+	return(tmp);
 }
 
 /**
@@ -58,5 +58,5 @@ int main(void)
 	n = print_listint_safe(head);
 	printf("%lu\n", n);
 	_free_listint_safe(&head);
-	return (0);
+	return(0);
 }
