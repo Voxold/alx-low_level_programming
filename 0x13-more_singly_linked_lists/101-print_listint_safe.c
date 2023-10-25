@@ -1,26 +1,4 @@
 #include "lists.h"
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-
-const listin_t **_r(const listin_t **list, size_t size, const listin_t)
-{
-    const listin_t **newlist;
-    size_t i;
-
-    newlist = malloc(size * sizeof(listin_t *));
-    if (newlist == NULL)
-    {
-        free(list);
-        exit(98);
-    }
-    for (i=0; i < size - 1;i++)
-        newlist[i] = list[i];
-    newlist[i] = new;
-    free(list);
-    return (newlist);
-
-}
 
 /**
  * print_listint_safe - prints a linked list, safely
