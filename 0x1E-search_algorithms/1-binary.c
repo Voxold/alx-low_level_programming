@@ -1,60 +1,51 @@
 #include "search_algos.h"
+#include <stdio.h>
+#include <stddef.h>
 
 /**
- * print_array - Prints the contents of an array.
- * @array: The source of the array to print.
- * @l: The left index of the array.
- * @r: The right index of the array.
- */
-void print_array(int *array, size_t l, size_t r)
+ * binary_search - searches for a value in an array of integers
+ * @array: pointer to the first element of the array to search in
+ * @size: number of elements in array
+ * @value: value to search for
+ * Return: first index where value is located, or -1 if value not present or
+*/
+
+int binary_search(int *array, size_t size, int value)
+{
+	size_t r = size - 1;
+	size_t l = 0, mid;
+
+	if (array == NULL || size == 0)
+		return (-1);
+
+	while (l <= r)
+	{
+		print_array1(array, l, r);
+		mid = l + (r - l) / 2;
+		if (array[mid] == value)
+			return (mid);
+		else if (array[mid] > value)
+			r = mid - 1;
+		else
+			l = mid + 1;
+	}
+	return (-1);
+}
+
+/**
+ * print_array1 - print elements of array
+ * @array: pointer to the first element of the array to print
+ * @start: first element of array to print from
+ * @end: last element of array to print to
+ * Return: Non
+*/
+
+void print_array1(int *array, size_t start, size_t end)
 {
 	size_t i;
 
-	if (array)
-	{
-		printf("Searching in array: ");
-		for (i = l; i < l + (r - l + 1); i++)
-			printf("%d%s", *(array + i), i < l + (r - l) ? ", " : "\n");
-	}
-}
-
-/**
- * binary_search_index - Searches a value in a sorted array using \
- * a binary search.
- * @array: The array to search in.
- * @l: The left index of the array.
- * @r: The right index of the array.
- * @value: The value to look for.
- *
- * Return: The first index of the value in the array, otherwise -1.
- */
-int binary_search_index(int *array, size_t l, size_t r, int value)
-{
-	size_t m;
-
-	if (!array)
-		return (-1);
-	print_array(array, l, r);
-	m = l + ((r - l) / 2);
-	if (l == r)
-		return (*(array + m) == value ? (int)m : -1);
-	if (value < *(array + m))
-		return (binary_search_index(array, l, m - 1, value));
-	else if (value == *(array + m))
-		return ((int)m);
-	else
-		return (binary_search_index(array, m + 1, r, value));
-}
-
-/**
- * binary_search - Searches a value in a sorted array using a binary search.
- * @array: The array to search in.
- * @size: The length of the array.
- * @value: The value to look for.
- *
- * Return: The index of the value in the array, otherwise -1.
- */
-int binary_search(int *array, size_t size, int value)
-{
-	return (binary_search_index(array, 0, size - 1, value));
+	printf("Searching in array: ");
+	for (i = start; i < end; i++)
+		printf("%d, ", array[i]);
+	printf("%d\n", array[end]);
 }
